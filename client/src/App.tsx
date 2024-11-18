@@ -1,8 +1,9 @@
 import {Routes, Route} from 'react-router-dom';
-// import { useState } from 'react'
+import { useStore } from './store';
 
 import Header from './components/Header';
 import Footer from './components/Footer';
+import ProtectRoute from './components/ProtectRoute';
 
 import AuthForm from './pages/AuthForm';
 import Dashboard from './pages/Dashboard';
@@ -11,22 +12,49 @@ import PetForm from './pages/PetForm';
 import PostForm from './pages/PostForm';
 
 function App() {
+  const {state} = useStore()!;
 
   return (
     <>
+      {state.loading && (
+        <div className="loading-overlay d-flex justify-content-center align-items-center">
+          <h2 className="jw-light">Loading...</h2>
+        </div>
+      )}
+
       <Header />
 
       <main className="flex-fill">
         <Routes>
           <Route path="/" element={<Landing />} />
 
-          <Route path="/register" element={<AuthForm isLogin={false} />} />
-          <Route path="/login" element={<AuthForm isLogin={true} />} />
+          <Route path="/register" element={(
+            <ProtectRoute>
+              <AuthForm isLogin={false} />
+            </ProtectRoute>
+          )} />
+          <Route path="/login" element={(
+            <ProtectRoute>
+              <AuthForm isLogin={true} />
+            </ProtectRoute>
+          )} />
 
-          <Route path="/pet" element={<PetForm />} />
-          <Route path="/post" element={<PostForm />} />
+          <Route path="/pet" element={(
+            <ProtectRoute>
+              <PetForm />
+            </ProtectRoute>
+          )} />
+          <Route path="/post" element={(
+            <ProtectRoute>
+              <PostForm />
+            </ProtectRoute>
+          )} />
 
-          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/dashboard" element={(
+            <ProtectRoute>
+              <Dashboard />
+            </ProtectRoute>
+          )} />
         </Routes>
       </main>
 

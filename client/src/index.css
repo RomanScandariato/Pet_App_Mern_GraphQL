@@ -2,13 +2,35 @@ html, body, #root {
   height: 100%;
 }
 
+.loading-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 100;
+  background: #eee
+}
+
 nav a.active:not(.navbar-brand), 
 nav a:hover:not(.navbar-brand) {
   text-decoration: underline;
+}
+
+.dropdown-menu[data-bs-popper] {
+  max-width: 190px;
+}
+
+.dropdown-menu[data-bs-popper] .dropdown-item-text {
+  word-wrap: break-word !important;
 }
 
 .landing-hero-image {
   background-image: url(/images/landing_bg.jpeg);
   background-size: cover;
   min-height: 600px;
+}
+
+.pet-output {
+  grid-template-columns: repeat(3, 1fr);
 }

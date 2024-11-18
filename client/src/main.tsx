@@ -2,6 +2,9 @@ import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import { ApolloClient, InMemoryCache, ApolloProvider, HttpLink, from } from '@apollo/client';
 import { onError } from '@apollo/client/link/error';
+
+import { StoreProvider } from './store/index.tsx';
+
 import { BrowserRouter } from 'react-router-dom';
 
 import './index.css';
@@ -31,9 +34,11 @@ const client = new ApolloClient({
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <ApolloProvider client={client}>
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
+      <StoreProvider>
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
+      </StoreProvider>
     </ApolloProvider>
   </StrictMode>,
 )

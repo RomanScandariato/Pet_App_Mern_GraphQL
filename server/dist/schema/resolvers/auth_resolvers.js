@@ -1,5 +1,6 @@
 import dotenv from 'dotenv';
 import jwt from 'jsonwebtoken';
+import { GraphQLError } from 'graphql';
 dotenv.config();
 import User from '../../models/User.js';
 import { errorHandler } from '../helpers/index.js';
@@ -43,7 +44,8 @@ const auth_resolvers = {
                 };
             }
             catch (error) {
-                return errorHandler(error);
+                const errorMessage = errorHandler(error);
+                throw new GraphQLError(errorMessage);
             }
         },
         // Log a user in
@@ -52,15 +54,11 @@ const auth_resolvers = {
                 email: args.email
             });
             if (!user) {
-                return {
-                    errors: ['No user found with that email address']
-                };
+                throw new GraphQLError('No user found with the email address');
             }
             const valid_pass = await user.validatePassword(args.password);
             if (!valid_pass) {
-                return {
-                    errors: ['Password is incorrect']
-                };
+                throw new GraphQLError('Password is incorrect');
             }
             const token = createToken(user._id);
             context.res.cookie('pet_token', token, {
