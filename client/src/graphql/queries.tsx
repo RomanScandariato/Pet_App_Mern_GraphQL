@@ -11,6 +11,19 @@ export const GET_USER = gql`
     }
 `;
 
+export const GET_ALL_POSTS = gql`
+    query GetAllPosts {
+        getAllPosts {
+            _id
+            body
+            title
+            pet {
+            name
+            }
+        }
+    }
+`;
+
 export const GET_USER_PETS = gql`
     query GetUserPets {
         getUserPets {
@@ -23,4 +36,14 @@ export const GET_USER_PETS = gql`
             }
         }
     }
+`
+
+export const GET_POSTS_FOR_PET = gql`
+    query GetPostsForPet($petId: ID) {
+        getPostsForPet(pet_id: $petId) {
+            _id
+            body
+            title
+        }
+    }   
 `
