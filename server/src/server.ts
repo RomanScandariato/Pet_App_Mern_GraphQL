@@ -45,5 +45,3 @@ connection.once('open', async () => {
     console.log('Express server started on', PORT);
   });
 });
-
-
