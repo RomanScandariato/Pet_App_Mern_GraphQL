@@ -30,6 +30,7 @@ jobs:
         run: npm run client:build && npm run server:build
 
       - name: Run tests
-        run: |
-          npm test
-          npm fkill :10000
+        run: npm test
+
+      - name: Kill process on port 10000
+        run: npm fkill :10000
