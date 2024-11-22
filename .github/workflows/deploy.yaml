@@ -31,6 +31,3 @@ jobs:
 
       - name: Run tests
         run: npm test
-
-      - name: Kill process on port 10000
-        run: npm fkill :10000
