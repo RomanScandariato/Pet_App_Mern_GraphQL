@@ -24,8 +24,6 @@ connection.once('open', async () => {
         // Attach the context object for all resolvers - The return value of the function is what your context will be
         context: authenticate
     }));
-    console.log('PROCESS PORT VARIABLE', process.env.PORT);
-    console.log('PORT VARIABLE', PORT);
     if (process.env.PORT) {
         const __dirname = path.dirname(new URL(import.meta.url).pathname);
         app.use(express.static(path.join(__dirname, '../../client/dist')));

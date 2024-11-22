@@ -25,14 +25,12 @@ const pet_resolvers = {
     // Get all posts
     async getAllPosts() {
       const posts = await Post.find().populate('pet');
-      console.log('all');
 
       return posts;
     },
 
     // Get user pets
     async getUserPets(_: any, __: any, context: Context) {
-      console.log('user pets');
       if (!context.req.user) {
         return {
           errors: ['You are not authorized to perform this action']
