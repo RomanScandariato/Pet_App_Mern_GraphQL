@@ -16,7 +16,7 @@
     "render:install": "cd ./server && npm i",
     "install": "cd ./server && npm i && cd ../client && npm i",
     "tes:dev": "concurrently \"npm run dev\" \"wait-on tcp:5173 && cd ./client && npm run cypress:open\"",
-    "cypress:test": "cd ./client && cypress:run",
+    "cypress:test": "cd ./client && npm run cypress:run",
     "test": "start-server-and-test start http://localhost:10000 cypress:test",
     "prep": "npm run client:build && npm run server:build"
   },
