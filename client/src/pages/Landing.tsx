@@ -9,6 +9,8 @@ function Landing() {
 
   return (
     <Container fluid={true}>
+      <h1>Worked!!</h1>
+
       <Row>
         <Col className="landing-hero-image" xs="12" md="6"></Col>
         <Col className="d-flex flex-column justify-content-center hero-text" xs="12" md="6">
