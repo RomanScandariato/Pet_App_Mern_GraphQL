@@ -107,5 +107,9 @@ describe('Site Tests', () => {
     cy.get('article').contains(petName).get('button').contains('View Posts').click();
 
     cy.get('.modal-body').contains(postTitle);
+
+    cy.visit('/');
+
+    cy.get('main').contains(postTitle);
   });
 });
