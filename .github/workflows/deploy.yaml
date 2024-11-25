@@ -9,12 +9,12 @@ jobs:
   tests:
     runs-on: ubuntu-latest
 
-    env:
-      JWT_SECRET: ${{ secrets.JWT_SECRET }}
-      MONGODB_URL: ${{ secrets.MONGODB_URL }}
-      PORT: ${{ secrets.PORT }}
-
     steps:
+      - name: Set environment variables
+        run: |
+          echo "JWT_SECRET=${{ secrets.JWT_SECRET }}" >> $GITHUB_ENV
+          echo "MONGODB_URL=${{ secrets.MONGODB_URL }}" >> $GITHUB_ENV
+          echo "PORT=${{ secrets.PORT }}" >> $GITHUB_ENV
       - name: Checkout code
         uses: actions/checkout@v2
 
